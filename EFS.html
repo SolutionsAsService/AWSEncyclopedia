@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon EFS - AWS Tools Encyclopedia</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Amazon EFS (Elastic File System)</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="s3.html">S3</a></li>
+        <li><a href="ec2.html">EC2</a></li>
+        <li><a href="lambda.html">Lambda</a></li>
+        <li><a href="rds.html">RDS</a></li>
+        <li><a href="iam.html">IAM</a></li>
+        <li><a href="ebs.html">EBS</a></li>
+        <li><a href="efs.html">EFS</a></li>
+        <li><a href="cloudfront.html">CloudFront</a></li>
+        <li><a href="sns.html">SNS</a></li>
+        <li><a href="vpc.html">VPC</a></li>
+        <li><a href="sqs.html">SQS</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Overview Section -->
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>
+        Amazon EFS (Elastic File System) is a simple, scalable, and fully managed file storage service for AWS cloud and on-premises resources. Unlike traditional storage systems, EFS is serverless, eliminating the need to provision, patch, or maintain infrastructure. It automatically scales up or down, supporting workloads that require shared access to file data across multiple instances and applications.
+      </p>
+    </section>
+
+    <!-- Features & Benefits Section -->
+    <section id="features">
+      <h2>Features &amp; Benefits</h2>
+      <ul>
+        <li><strong>Serverless and Fully Managed:</strong> No need to provision or maintain file servers.</li>
+        <li><strong>Scalability:</strong> Grows and shrinks automatically as files are added or removed.</li>
+        <li><strong>Multiple Storage Classes:</strong> Supports standard and infrequent access storage options.</li>
+        <li><strong>High Availability:</strong> Stores data redundantly across multiple Availability Zones.</li>
+        <li><strong>Secure Access:</strong> Integrates with AWS IAM, VPC, and encryption options for data protection.</li>
+        <li><strong>Cost-Effective:</strong> Pay only for the storage used, with no minimum fees or setup costs.</li>
+      </ul>
+    </section>
+
+    <!-- How to Use Section -->
+    <section id="how-to-use">
+      <h2>How to Use Amazon EFS</h2>
+      <ol>
+        <li><strong>Create an EFS File System:</strong> Navigate to the AWS console and create a new EFS instance.</li>
+        <li><strong>Configure Access:</strong> Set up access points, security groups, and IAM roles.</li>
+        <li><strong>Mount to Instances:</strong> Use the provided mount commands to attach EFS to EC2 instances.</li>
+        <li><strong>Optimize Storage:</strong> Choose between Standard and Infrequent Access storage classes.</li>
+        <li><strong>Monitor Usage:</strong> Utilize AWS CloudWatch to track file system performance.</li>
+      </ol>
+    </section>
+
+    <!-- Pros &amp; Cons Section -->
+    <section id="pros-cons">
+      <h2>Pros &amp; Cons</h2>
+      <div class="pros-cons-container">
+        <div class="pros">
+          <h3>Pros</h3>
+          <ul>
+            <li><strong>Fully Managed:</strong> No manual maintenance required.</li>
+            <li><strong>Auto-Scaling:</strong> Grows with your workload needs.</li>
+            <li><strong>High Durability:</strong> Redundant storage across multiple regions.</li>
+            <li><strong>Cost-Efficient:</strong> Pay only for used storage.</li>
+            <li><strong>Multi-AZ Access:</strong> Supports simultaneous access from multiple EC2 instances.</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h3>Cons</h3>
+          <ul>
+            <li><strong>Performance Variability:</strong> Latency can be higher than EBS for some workloads.</li>
+            <li><strong>More Expensive than S3:</strong> Costs more per GB compared to S3 storage.</li>
+            <li><strong>Learning Curve:</strong> Requires understanding of permissions and mount configurations.</li>
+            <li><strong>Limited Use Cases:</strong> Not ideal for high IOPS, transactional databases.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases">
+      <h2>Use Cases</h2>
+      <ul>
+        <li>Shared storage for containerized applications and microservices.</li>
+        <li>Big data processing and machine learning workloads.</li>
+        <li>Content management and file sharing between multiple users or applications.</li>
+        <li>Backup and archive storage for long-term data retention.</li>
+      </ul>
+    </section>
+
+    <!-- Additional Information Section -->
+    <section id="additional-info">
+      <h2>Additional Information</h2>
+      <p>
+        Amazon EFS provides a highly available and scalable file system that works well for distributed workloads, DevOps environments, and application hosting. By leveraging AWS security features and monitoring tools, you can ensure efficient and protected storage for your cloud-based applications.
+      </p>
+    </section>
+
+    <!-- Additional Resources Section -->
+    <section id="resources">
+      <h2>Additional Resources</h2>
+      <ul>
+        <li><a href="https://aws.amazon.com/efs/" target="_blank" rel="noopener">Amazon EFS Official Page</a></li>
+        <li><a href="https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html" target="_blank" rel="noopener">AWS EFS Documentation</a></li>
+        <li><a href="https://aws.amazon.com/blogs/aws/" target="_blank" rel="noopener">AWS Blog</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 AWS Tools Encyclopedia</p>
+  </footer>
+</body>
+</html>
