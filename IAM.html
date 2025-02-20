@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon IAM - AWS Tools Encyclopedia</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Amazon IAM (Identity and Access Management)</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="s3.html">S3</a></li>
+        <li><a href="ec2.html">EC2</a></li>
+        <!-- Add additional tool links if needed -->
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <!-- Overview Section -->
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>
+        Amazon IAM (Identity and Access Management) allows users to securely access and manage AWS resources. To achieve complete control over access to AWS tools and resources, IAM provides centralized management for authentication (who signs in) and authorization (what permissions they have). Its attribute-based access control enables you to create and enforce policies based on user attributes such as job role, department, etc. This empowers you to allow or deny access based on precise criteria, ensuring that the right individuals have the right permissions at the right time.
+      </p>
+    </section>
+    
+    <!-- Features & Benefits Section -->
+    <section id="features">
+      <h2>Features &amp; Benefits</h2>
+      <ul>
+        <li><strong>Centralized Management:</strong> Manage access permissions across all AWS services from a single interface.</li>
+        <li><strong>Granular Control:</strong> Use attribute-based policies to fine-tune permissions for different user roles.</li>
+        <li><strong>Secure Authentication:</strong> Integrates with Multi-Factor Authentication (MFA) to provide an extra layer of security.</li>
+        <li><strong>Scalable:</strong> Designed to support secure access for organizations of all sizes.</li>
+        <li><strong>Audit &amp; Compliance:</strong> Maintain detailed logs and reports to ensure compliance with security standards.</li>
+      </ul>
+    </section>
+    
+    <!-- How to Use Section -->
+    <section id="how-to-use">
+      <h2>How to Use Amazon IAM</h2>
+      <ol>
+        <li>
+          <strong>Create Users and Groups:</strong> Begin by creating individual users and grouping them based on roles.
+        </li>
+        <li>
+          <strong>Define Policies:</strong> Write and attach policies to control what actions users or groups can perform.
+        </li>
+        <li>
+          <strong>Enable MFA:</strong> Add an extra layer of security by enabling Multi-Factor Authentication.
+        </li>
+        <li>
+          <strong>Monitor Activity:</strong> Use AWS CloudTrail and IAM reports to track changes and access patterns.
+        </li>
+        <li>
+          <strong>Regularly Review Permissions:</strong> Audit and update policies to follow the principle of least privilege.
+        </li>
+      </ol>
+    </section>
+    
+    <!-- Pros &amp; Cons Section (Side-by-Side) -->
+    <section id="pros-cons">
+      <h2>Pros &amp; Cons</h2>
+      <div class="pros-cons-container">
+        <div class="pros">
+          <h3>Pros</h3>
+          <ul>
+            <li><strong>Centralized Access Management:</strong> Streamlines control over user permissions across AWS services.</li>
+            <li><strong>Granular Policies:</strong> Offers fine-grained access control using attribute-based policies.</li>
+            <li><strong>Enhanced Security:</strong> Supports MFA and robust auditing to strengthen security.</li>
+            <li><strong>Scalable:</strong> Efficiently manages access for small to large enterprises.</li>
+            <li><strong>Integration:</strong> Works seamlessly with other AWS services for unified security management.</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h3>Cons</h3>
+          <ul>
+            <li><strong>Complexity:</strong> Configuring detailed policies can be challenging for beginners.</li>
+            <li><strong>Learning Curve:</strong> Requires time and effort to fully understand and implement best practices.</li>
+            <li><strong>Risk of Misconfiguration:</strong> Incorrect settings can inadvertently expose resources.</li>
+            <li><strong>Limited Visibility:</strong> Without additional monitoring tools, tracking permission changes can be difficult.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Use Cases Section -->
+    <section id="use-cases">
+      <h2>Use Cases</h2>
+      <ul>
+        <li>Securely managing access for enterprise-level applications across multiple AWS services.</li>
+        <li>Implementing role-based access control in organizations of various sizes.</li>
+        <li>Enforcing strict compliance and audit requirements through detailed permission logs.</li>
+        <li>Enhancing security for collaborative environments with diverse access needs.</li>
+      </ul>
+    </section>
+    
+    <!-- Additional Information Section -->
+    <section id="additional-info">
+      <h2>Additional Information</h2>
+      <p>
+        Amazon IAM is the backbone of AWS security, offering the tools necessary to define and manage access policies effectively. It empowers administrators to protect their infrastructure while granting appropriate access to resources. Regular audits, proper configuration, and continuous monitoring are key to leveraging IAM’s full potential.
+      </p>
+    </section>
+    
+    <!-- Additional Resources Section -->
+    <section id="resources">
+      <h2>Additional Resources</h2>
+      <ul>
+        <li><a href="https://aws.amazon.com/iam/" target="_blank" rel="noopener">Amazon IAM Official Page</a></li>
+        <li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html" target="_blank" rel="noopener">AWS IAM Documentation</a></li>
+        <li><a href="https://aws.amazon.com/blogs/aws/" target="_blank" rel="noopener">AWS Blog</a></li>
+      </ul>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 AWS Tools Encyclopedia</p>
+  </footer>
+</body>
+</html>
