@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon EBS - AWS Tools Encyclopedia</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Amazon EBS (Elastic Block Store)</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="s3.html">S3</a></li>
+        <li><a href="ec2.html">EC2</a></li>
+        <!-- Add additional tool links if needed -->
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <!-- Overview Section -->
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>
+        Amazon EBS (Elastic Block Store) is a block storage solution specifically designed for Amazon EC2. It is engineered to securely manage transactions across workloads of any size. With Amazon EBS, you can handle diverse workloads—whether relational, non-relational, or business applications—while choosing from five different volume types to achieve optimum cost and effectiveness.
+      </p>
+      <p>
+        Ideal for high-performance scaling workloads, Amazon EBS supports environments running big data analytics engines such as Hadoop and Spark, as well as enterprise applications like Microsoft and SAP products. Its lifecycle management features also enable the creation and management of automated backups to ensure data durability.
+      </p>
+    </section>
+    
+    <!-- Features &amp; Benefits Section -->
+    <section id="features">
+      <h2>Features &amp; Benefits</h2>
+      <ul>
+        <li><strong>Scalable Block Storage:</strong> Provides reliable, high-performance storage designed for EC2 instances.</li>
+        <li><strong>Multiple Volume Types:</strong> Choose from five different volume types tailored to performance and cost requirements.</li>
+        <li><strong>Lifecycle Management:</strong> Automates snapshot creation and backup management for enhanced data protection.</li>
+        <li><strong>Optimized Transactional Handling:</strong> Securely manages transactions for diverse workloads.</li>
+        <li><strong>High Performance:</strong> Supports intensive workloads including databases, big data analytics, and enterprise applications.</li>
+        <li><strong>Secure &amp; Durable:</strong> Offers robust security features ensuring data integrity and availability.</li>
+      </ul>
+    </section>
+    
+    <!-- How to Use Section -->
+    <section id="how-to-use">
+      <h2>How to Use Amazon EBS</h2>
+      <ol>
+        <li>
+          <strong>Provision a Volume:</strong> Create an EBS volume using the AWS Management Console, CLI, or API. Choose the appropriate volume type and size based on your workload.
+        </li>
+        <li>
+          <strong>Attach to EC2:</strong> Attach the provisioned volume to your EC2 instance to use it as a disk drive.
+        </li>
+        <li>
+          <strong>Configure the Volume:</strong> Format and mount the volume on your EC2 instance to prepare it for data storage.
+        </li>
+        <li>
+          <strong>Implement Lifecycle Policies:</strong> Set up automated snapshots and backup schedules to ensure your data is protected.
+        </li>
+        <li>
+          <strong>Monitor and Adjust:</strong> Utilize AWS monitoring tools to track performance and make adjustments as necessary.
+        </li>
+      </ol>
+    </section>
+    
+    <!-- Pros &amp; Cons Section (Side-by-Side) -->
+    <section id="pros-cons">
+      <h2>Pros &amp; Cons</h2>
+      <div class="pros-cons-container">
+        <div class="pros">
+          <h3>Pros</h3>
+          <ul>
+            <li><strong>High Performance:</strong> Provides robust performance for transaction-intensive workloads.</li>
+            <li><strong>Scalability:</strong> Easily scales to accommodate growing storage demands.</li>
+            <li><strong>Multiple Volume Options:</strong> Offers a range of volume types to suit varying performance and cost needs.</li>
+            <li><strong>Lifecycle Management:</strong> Automates backups and snapshot creation for improved data protection.</li>
+            <li><strong>Secure &amp; Durable:</strong> Delivers reliable data integrity with advanced security features.</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h3>Cons</h3>
+          <ul>
+            <li><strong>Configuration Complexity:</strong> Fine-tuning volumes for optimal performance may be challenging for beginners.</li>
+            <li><strong>Cost Variability:</strong> High-performance workloads can lead to increased costs.</li>
+            <li><strong>EC2 Dependency:</strong> Designed specifically for EC2, limiting its use outside this environment.</li>
+            <li><strong>Instance Performance Ties:</strong> The volume’s performance is partially dependent on the attached EC2 instance.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Use Cases Section -->
+    <section id="use-cases">
+      <h2>Use Cases</h2>
+      <ul>
+        <li>Persistent storage for databases and enterprise applications.</li>
+        <li>High-performance storage for transaction-intensive workloads.</li>
+        <li>Automated backup and disaster recovery solutions using snapshots.</li>
+        <li>Supporting big data analytics workloads with scalable storage.</li>
+        <li>File system storage for application data on EC2 instances.</li>
+      </ul>
+    </section>
+    
+    <!-- Additional Information Section -->
+    <section id="additional-info">
+      <h2>Additional Information</h2>
+      <p>
+        Amazon EBS is a critical component for many AWS architectures, offering flexible and high-performance block storage solutions. By selecting the appropriate volume type and leveraging lifecycle management features, organizations can ensure data durability, optimize costs, and maintain seamless scalability for their applications.
+      </p>
+    </section>
+    
+    <!-- Additional Resources Section -->
+    <section id="resources">
+      <h2>Additional Resources</h2>
+      <ul>
+        <li><a href="https://aws.amazon.com/ebs/" target="_blank" rel="noopener">Amazon EBS Official Page</a></li>
+        <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html" target="_blank" rel="noopener">AWS EBS Documentation</a></li>
+        <li><a href="https://aws.amazon.com/blogs/aws/" target="_blank" rel="noopener">AWS Blog</a></li>
+      </ul>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 AWS Tools Encyclopedia</p>
+  </footer>
+</body>
+</html>
