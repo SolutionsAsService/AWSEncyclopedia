@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon Lambda - AWS Tools Encyclopedia</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Amazon Lambda (Serverless Computing)</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="s3.html">S3</a></li>
+        <li><a href="ec2.html">EC2</a></li>
+        <!-- Add additional tool links if needed -->
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <!-- Overview Section -->
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>
+        Amazon Lambda is a serverless and event-driven computing service that enables you to run code without provisioning or managing servers. It automatically scales your applications by running code in response to triggers such as changes in data, system state, or user actions. With Lambda, you only pay for the compute time you consume, making it a cost-effective option for running backend services and virtual applications.
+      </p>
+      <p>
+        By eliminating the need to worry about server management, developers can focus solely on writing code. Lambda’s robust architecture ensures precise software scaling and extensive availability, capable of handling hundreds to thousands of workloads per second.
+      </p>
+    </section>
+    
+    <!-- Features &amp; Benefits Section -->
+    <section id="features">
+      <h2>Features &amp; Benefits</h2>
+      <ul>
+        <li><strong>Serverless Architecture:</strong> No need to provision, manage, or scale servers manually.</li>
+        <li><strong>Event-Driven:</strong> Automatically triggers code execution in response to various events.</li>
+        <li><strong>Cost-Effective:</strong> Pay only for the compute time used, reducing overhead costs.</li>
+        <li><strong>Automatic Scaling:</strong> Dynamically scales with incoming workload, ensuring high availability.</li>
+        <li><strong>Integrated Security:</strong> Works seamlessly with AWS IAM to manage access and security policies.</li>
+        <li><strong>Flexible Runtime Support:</strong> Supports multiple programming languages and runtimes, giving developers freedom in choosing the best tool for the job.</li>
+      </ul>
+    </section>
+    
+    <!-- How to Use Section -->
+    <section id="how-to-use">
+      <h2>How to Use Amazon Lambda</h2>
+      <ol>
+        <li>
+          <strong>Upload Your Code:</strong> Package your application code and dependencies, then upload it using the AWS Management Console, CLI, or API.
+        </li>
+        <li>
+          <strong>Configure Triggers:</strong> Set up event sources such as S3, DynamoDB, API Gateway, or CloudWatch to invoke your Lambda functions automatically.
+        </li>
+        <li>
+          <strong>Set Runtime Parameters:</strong> Define memory allocation, timeout settings, and environment variables to optimize function performance.
+        </li>
+        <li>
+          <strong>Deploy and Monitor:</strong> Deploy your Lambda function and use AWS CloudWatch to monitor its performance, logs, and metrics.
+        </li>
+        <li>
+          <strong>Update and Optimize:</strong> Refine your function’s code and configuration as needed to handle evolving workloads efficiently.
+        </li>
+      </ol>
+    </section>
+    
+    <!-- Pros &amp; Cons Section (Side-by-Side) -->
+    <section id="pros-cons">
+      <h2>Pros &amp; Cons</h2>
+      <div class="pros-cons-container">
+        <div class="pros">
+          <h3>Pros</h3>
+          <ul>
+            <li><strong>No Server Management:</strong> Focus on code rather than infrastructure.</li>
+            <li><strong>Cost Efficiency:</strong> Pay only for execution time, saving on idle resources.</li>
+            <li><strong>Automatic Scaling:</strong> Scales seamlessly to match demand.</li>
+            <li><strong>High Availability:</strong> Built-in fault tolerance and redundancy.</li>
+            <li><strong>Flexible Integration:</strong> Easily integrates with other AWS services.</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h3>Cons</h3>
+          <ul>
+            <li><strong>Cold Starts:</strong> Initial invocation latency can affect performance.</li>
+            <li><strong>Execution Limits:</strong> Maximum execution time and resource limits may require function refactoring for long-running tasks.</li>
+            <li><strong>Debugging Complexity:</strong> Troubleshooting serverless functions can be challenging due to their distributed nature.</li>
+            <li><strong>Vendor Lock-in:</strong> Tightly integrated with AWS, potentially limiting multi-cloud strategies.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Use Cases Section -->
+    <section id="use-cases">
+      <h2>Use Cases</h2>
+      <ul>
+        <li>Building scalable microservices and APIs.</li>
+        <li>Running automated backend tasks triggered by events.</li>
+        <li>Processing data streams in real-time (e.g., IoT data, logs).</li>
+        <li>Implementing dynamic web applications and mobile backends.</li>
+        <li>Creating serverless data pipelines for analytics and processing.</li>
+      </ul>
+    </section>
+    
+    <!-- Additional Information Section -->
+    <section id="additional-info">
+      <h2>Additional Information</h2>
+      <p>
+        Amazon Lambda is designed to simplify the development of scalable applications. Its event-driven model and integration with numerous AWS services make it an excellent choice for modern application architectures. Developers can leverage Lambda to create lightweight, efficient, and highly responsive applications without the overhead of traditional server management.
+      </p>
+      <p>
+        As with any serverless solution, understanding the nuances of Lambda, such as managing cold starts and optimizing function execution, is crucial for maximizing performance. Continuous monitoring and proper configuration are key to ensuring smooth operation.
+      </p>
+    </section>
+    
+    <!-- Additional Resources Section -->
+    <section id="resources">
+      <h2>Additional Resources</h2>
+      <ul>
+        <li><a href="https://aws.amazon.com/lambda/" target="_blank" rel="noopener">Amazon Lambda Official Page</a></li>
+        <li><a href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html" target="_blank" rel="noopener">AWS Lambda Documentation</a></li>
+        <li><a href="https://aws.amazon.com/blogs/aws/" target="_blank" rel="noopener">AWS Blog</a></li>
+      </ul>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 AWS Tools Encyclopedia</p>
+  </footer>
+</body>
+</html>
