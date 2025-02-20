@@ -4,44 +4,109 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AWS Tools Encyclopedia</title>
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #232f3e;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #fff;
+      padding: 10px;
+      border-bottom: 2px solid #ddd;
+      max-width: 800px;
+      margin: 20px auto;
+      border-radius: 5px;
+    }
+    nav details {
+      margin-bottom: 10px;
+    }
+    nav summary {
+      font-weight: bold;
+      cursor: pointer;
+      padding: 10px;
+      background: #ddd;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      list-style: none;
+    }
+    nav ul {
+      list-style: none;
+      padding-left: 20px;
+      margin-top: 5px;
+    }
+    nav ul li {
+      margin: 8px 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #232f3e;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #0056b3;
+    }
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    p {
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>AWS Tools Encyclopedia</h1>
   </header>
 
-  <section id="overview">
-    <h2>About AWS</h2>
+  <nav>
+    <!-- Expandable menu for AWS Tools -->
+    <details>
+      <summary>AWS Tools</summary>
+      <ul>
+        <li><a href="ec2.html">EC2 (Elastic Compute Cloud)</a></li>
+        <li><a href="s3.html">S3 (Simple Storage Service)</a></li>
+        <li><a href="lambda.html">Lambda</a></li>
+        <li><a href="rds.html">RDS (Relational Database Service)</a></li>
+        <!-- Add additional AWS tool links as needed -->
+      </ul>
+    </details>
+    <!-- You can add additional expandable sections if you wish to group tools -->
+    <details>
+      <summary>Networking & Content Delivery</summary>
+      <ul>
+        <li><a href="vpc.html">VPC (Virtual Private Cloud)</a></li>
+        <li><a href="cloudfront.html">CloudFront</a></li>
+        <!-- More links can be added here -->
+      </ul>
+    </details>
+  </nav>
+
+  <main>
+    <h2>Welcome!</h2>
     <p>
-      Amazon Web Services (AWS) offers a wide range of cloud computing tools and
-      services designed to help businesses scale and innovate. Explore the tools below to learn more.
+      This encyclopedia provides detailed pages for each AWS tool. Use the expandable menu above to navigate through the different categories and select a tool to learn more about it.
     </p>
-  </section>
-
-  <section id="aws-tools">
-    <h2>AWS Tools</h2>
-    <div class="tool">
-      <h3 onclick="toggleDescription('ec2')">EC2 (Elastic Compute Cloud)</h3>
-      <div id="ec2" class="tool-description">
-        <p>
-          Amazon EC2 provides resizable compute capacity in the cloud. It is designed to make web-scale computing easier for developers.
-        </p>
-      </div>
-    </div>
-
-    <div class="tool">
-      <h3 onclick="toggleDescription('s3')">S3 (Simple Storage Service)</h3>
-      <div id="s3" class="tool-description">
-        <p>
-          Amazon S3 is an object storage service offering industry-leading scalability, data availability, security, and performance.
-        </p>
-      </div>
-    </div>
-
-    <!-- Add more AWS tools similarly -->
-  </section>
-
-  <script src="script.js"></script>
+  </main>
 </body>
 </html>
