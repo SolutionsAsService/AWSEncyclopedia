@@ -42,6 +42,35 @@ nav {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Updated navigation list styling for a more professional look */
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #232f3e;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+  background: #ff9900;
+  color: #fff;
+}
+
+/* Expandable menu styling remains unchanged */
 nav details {
   margin-bottom: 15px;
   border: 1px solid #ddd;
@@ -113,40 +142,43 @@ h2 {
   padding-bottom: 10px;
 }
 
-p {
+/* Indent paragraphs and numbered lists */
+p, ol {
   margin-bottom: 15px;
   font-size: 1.1rem;
+  margin-left: 20px;
 }
-    /* Additional styling for detailed S3 page can be added here if needed */
-    section {
-      margin-bottom: 30px;
-    }
-    section h2 {
-      margin-bottom: 15px;
-      border-bottom: 2px solid #ff9900;
-      padding-bottom: 5px;
-      color: #232f3e;
-    }
-    section ul {
-      margin-left: 20px;
-    }
-    section ul li {
-      margin-bottom: 10px;
-    }
-    .pros, .cons {
-      display: inline-block;
-      width: 48%;
-      vertical-align: top;
-    }
-    .pros ul, .cons ul {
-      margin-top: 10px;
-    }
-    @media (max-width: 768px) {
-      .pros, .cons {
-        width: 100%;
-        display: block;
-      }
-    }
+
+/* Additional styling for detailed pages */
+section {
+  margin-bottom: 30px;
+}
+
+section h2 {
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ff9900;
+  padding-bottom: 5px;
+  color: #232f3e;
+}
+
+section ul {
+  margin-left: 20px;
+}
+
+section ul li {
+  margin-bottom: 10px;
+}
+
+/* Side-by-side pros & cons */
+.pros, .cons {
+  display: inline-block;
+  width: 48%;
+  vertical-align: top;
+}
+
+.pros ul, .cons ul {
+  margin-top: 10px;
+}
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
@@ -157,5 +189,11 @@ p {
 
   header h1 {
     font-size: 2rem;
+  }
+  
+  /* Ensure pros and cons stack on smaller screens */
+  .pros, .cons {
+    width: 100%;
+    display: block;
   }
 }
