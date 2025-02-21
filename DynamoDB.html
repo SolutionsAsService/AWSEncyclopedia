@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon DynamoDB - Comprehensive Guide</title>
+</head>
+<body>
+
+    <header>
+        <h1>Amazon DynamoDB</h1>
+        <p>A fully managed NoSQL database service designed for high-performance applications.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>Amazon DynamoDB is a serverless NoSQL database that provides key-value and document-based data storage. It is built to support high-scale applications, processing up to 10 trillion requests per day with more than 20 million requests per second. It is fully managed, highly available, and designed for performance, making it ideal for real-time applications.</p>
+            <p>DynamoDB includes built-in security, automatic multi-region replication, in-memory caching, and tools for analytics and traffic monitoring. It eliminates the need for database management tasks such as patching, replication, and scaling.</p>
+        </section>
+
+        <section>
+            <h2>How to Use Amazon DynamoDB</h2>
+            <ol>
+                <li><strong>Create a DynamoDB Table:</strong> Define a primary key and optional secondary indexes.</li>
+                <li><strong>Choose Capacity Mode:</strong> Select between on-demand capacity or provisioned capacity.</li>
+                <li><strong>Insert and Retrieve Data:</strong> Use AWS SDKs or the AWS CLI to store and fetch key-value pairs.</li>
+                <li><strong>Enable Auto Scaling:</strong> Configure auto-scaling to adjust read and write capacity as needed.</li>
+                <li><strong>Utilize Streams and Triggers:</strong> Use DynamoDB Streams to capture changes and integrate with AWS Lambda for event-driven workflows.</li>
+                <li><strong>Enable Global Tables:</strong> Set up multi-region replication for high availability and disaster recovery.</li>
+                <li><strong>Monitor and Optimize:</strong> Use AWS CloudWatch and AWS X-Ray to analyze performance and optimize queries.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Pros and Cons</h2>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="width: 48%;">
+                    <h3>Pros</h3>
+                    <ul>
+                        <li>Fully managed and serverless—no need for database administration.</li>
+                        <li>Highly scalable, supporting millions of requests per second.</li>
+                        <li>Built-in security with encryption, IAM integration, and access control.</li>
+                        <li>Automatic backups and point-in-time recovery.</li>
+                        <li>Seamless integration with AWS services like Lambda, API Gateway, and S3.</li>
+                        <li>On-demand pricing reduces costs for unpredictable workloads.</li>
+                    </ul>
+                </div>
+                <div style="width: 48%;">
+                    <h3>Cons</h3>
+                    <ul>
+                        <li>Strict primary key structure—complex queries require additional design considerations.</li>
+                        <li>Provisioned throughput requires careful planning for cost efficiency.</li>
+                        <li>Eventual consistency in global tables may affect real-time applications.</li>
+                        <li>Limited support for relational queries (joins, foreign keys, etc.).</li>
+                        <li>Pricing can be high for workloads with consistent heavy traffic.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Conclusion</h2>
+            <p>Amazon DynamoDB is a powerful NoSQL database designed for high-performance, real-time applications. It offers scalability, reliability, and security without requiring traditional database management. While it provides great advantages for event-driven and microservices architectures, users should consider its pricing model and data structure limitations before implementation.</p>
+        </section>
+    </main>
+
+</body>
+</html>
