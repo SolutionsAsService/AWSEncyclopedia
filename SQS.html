@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Amazon SQS (Simple Queue Service)</title>
+</head>
+<body>
+  <header>
+    <h1>Amazon SQS (Simple Queue Service)</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="ec2.html">EC2</a></li>
+        <li><a href="s3.html">S3</a></li>
+        <li><a href="lambda.html">Lambda</a></li>
+        <li><a href="rds.html">RDS</a></li>
+        <li><a href="iam.html">IAM</a></li>
+        <li><a href="ebs.html">EBS</a></li>
+        <li><a href="efs.html">EFS</a></li>
+        <li><a href="cloudfront.html">CloudFront</a></li>
+        <li><a href="sns.html">SNS</a></li>
+        <li><a href="sqs.html">SQS</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <!-- Overview Section -->
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>Amazon SQS (Simple Queue Service) is a fully managed messaging service that enables you to store, send, and receive messages between software components reliably. Using a polling mechanism, it can handle any volume of messages without data loss. SQS supports both Standard queues for high throughput and FIFO queues to ensure messages are processed once and in the exact order they are sent.</p>
+    </section>
+    
+    <!-- Features & Benefits Section -->
+    <section id="features">
+      <h2>Key Features &amp; Benefits</h2>
+      <ul>
+        <li><strong>Reliable Messaging:</strong> Guarantees delivery of messages with no data loss, even under high loads.</li>
+        <li><strong>FIFO Support:</strong> FIFO queues ensure messages are processed in strict order, exactly once.</li>
+        <li><strong>Decoupling Components:</strong> Allows the separation of application components, enhancing scalability and fault tolerance.</li>
+        <li><strong>Scalability:</strong> Automatically scales to handle millions of messages without manual intervention.</li>
+        <li><strong>Security:</strong> Supports encryption and integrates with AWS IAM to control access.</li>
+      </ul>
+    </section>
+    
+    <!-- How to Use Section -->
+    <section id="how-to-use">
+      <h2>How to Use Amazon SQS</h2>
+      <ol>
+        <li><strong>Create a Queue:</strong> Use the AWS Management Console, CLI, or SDKs to create either a Standard or FIFO queue based on your application needs.</li>
+        <li><strong>Send Messages:</strong> Publish messages to the queue using the provided API calls.</li>
+        <li><strong>Receive Messages:</strong> Poll the queue to retrieve and process messages. Implement long polling to reduce empty responses and improve efficiency.</li>
+        <li><strong>Delete Processed Messages:</strong> Once a message is processed, delete it from the queue to prevent reprocessing.</li>
+        <li><strong>Monitor Performance:</strong> Use Amazon CloudWatch to monitor metrics, ensuring that your system scales appropriately and performs optimally.</li>
+      </ol>
+    </section>
+    
+    <!-- Pros &amp; Cons Section (Side-by-Side) -->
+    <section id="pros-cons">
+      <h2>Pros &amp; Cons</h2>
+      <div>
+        <div>
+          <h3>Pros</h3>
+          <ul>
+            <li><strong>High Availability:</strong> Built on a distributed system that ensures durability and availability of messages.</li>
+            <li><strong>Scalable:</strong> Automatically adjusts to the volume of messages, providing reliable performance at any scale.</li>
+            <li><strong>Cost-Effective:</strong> Pay-as-you-go pricing, with no upfront costs and charges only for the messages processed.</li>
+            <li><strong>Ease of Integration:</strong> Simple APIs and SDKs enable quick integration with your applications and other AWS services.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cons</h3>
+          <ul>
+            <li><strong>Polling Latency:</strong> The polling mechanism may introduce slight delays compared to push-based messaging.</li>
+            <li><strong>Limited Message Retention:</strong> Messages are retained for a limited time (up to 14 days), requiring timely processing.</li>
+            <li><strong>Complexity in Large-Scale Systems:</strong> Managing multiple queues and integrations might require careful architectural planning.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Use Cases Section -->
+    <section id="use-cases">
+      <h2>Use Cases</h2>
+      <ul>
+        <li>Decoupling microservices in distributed systems.</li>
+        <li>Implementing asynchronous processing in serverless applications.</li>
+        <li>Handling background jobs and batch processing for web applications.</li>
+        <li>Coordinating tasks between cloud-based and on-premises systems.</li>
+      </ul>
+    </section>
+    
+    <!-- Additional Resources Section -->
+    <section id="additional-resources">
+      <h2>Additional Resources</h2>
+      <ul>
+        <li><a href="https://aws.amazon.com/sqs/" target="_blank" rel="noopener">Amazon SQS Official Page</a></li>
+        <li><a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html" target="_blank" rel="noopener">SQS Developer Guide</a></li>
+        <li><a href="https://aws.amazon.com/blogs/aws/" target="_blank" rel="noopener">AWS Blog</a></li>
+      </ul>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 AWS Tools Encyclopedia</p>
+  </footer>
+</body>
+</html>
