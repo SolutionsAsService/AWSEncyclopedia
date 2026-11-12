@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lambda · AWS Encyclopedia</title>
+<meta name="description" content="Lambda (AWS Lambda): Functions that run when something happens (a web request, a file upload, a message) without a server you manage. You pay per request and per millisecond.">
+<meta property="og:title" content="Lambda · AWS Encyclopedia">
+<meta property="og:description" content="Lambda (AWS Lambda): Functions that run when something happens (a web request, a file upload, a message) without a server you manage. You pay per request and per millisecond.">
+<meta property="og:image" content="https://awsencyclopedia.shadw.app/og.png">
+<meta property="og:site_name" content="AWS Encyclopedia">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark" aria-hidden="true"></span><span>AWS <b>Encyclopedia</b></span></a>
+  <nav class="nav-wide" aria-label="Site"><ul><li><a href="services.html">All 436 services</a></li><li><a href="why.html">Why it&#x27;s complicated</a></li><li><a href="start.html" aria-current="page">The 13 basics</a></li><li><a href="shadw.html">Use Shadw</a></li></ul></nav>
+  <details class="nav-menu"><summary>Menu</summary><nav aria-label="Site menu"><ul><li><a href="services.html">All 436 services</a></li><li><a href="why.html">Why it&#x27;s complicated</a></li><li><a href="start.html" aria-current="page">The 13 basics</a></li><li><a href="shadw.html">Use Shadw</a></li></ul></nav></details>
+</header>
+<main id="main">
+<div class="wrap">
+<header class="pg-head"><p class="kicker">Compute · 3 of 13 basics</p><h1>Lambda</h1><p class="lede">AWS Lambda</p></header>
+<dl class="stats"><div><dt>SDK name</dt><dd><code>lambda</code></dd></div><div><dt>API operations</dt><dd>88</dd></div><div><dt>Size rank</dt><dd>#56 of 436</dd></div></dl>
+<section class="sec"><h2>What it is</h2><p>Functions that run when something happens (a web request, a file upload, a message) without a server you manage. You pay per request and per millisecond.</p></section>
+<section class="sec"><h2>What it is for</h2><p>Small pieces of backend logic, glue between services, scheduled jobs.</p></section>
+<section class="sec"><h2>The catch</h2><p>Each function needs an IAM role, a trigger and limits (time, memory); a web API usually adds API Gateway or a function URL. Debugging spans CloudWatch logs.</p></section>
+<aside class="web"><h2>For a website</h2><p>Not needed for a site that is only pages. <a href="shadw.html">A whole site on Shadw is one file →</a></p></aside>
+<nav class="pager" aria-label="Previous and next"><a href="s3.html" rel="prev"><small>← Previous</small><span>S3</span></a><a class="nx" href="DynamoDB.html" rel="next"><small>Next →</small><span>DynamoDB</span></a></nav></div>
+</main>
+<footer class="foot">
+  <p><strong>AWS Encyclopedia.</strong> Counts from the AWS SDK for Python (botocore 1.44.1, read 2026-11-12). Not affiliated with Amazon Web Services. <a href="about.html">About</a> · <a href="https://github.com/SolutionsAsService/AWSEncyclopedia">Source</a> · MIT licence.</p>
+</footer>
+</body>
+</html>

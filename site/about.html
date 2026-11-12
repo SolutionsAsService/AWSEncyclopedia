@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About · AWS Encyclopedia</title>
+<meta name="description" content="Where the numbers come from.">
+<meta property="og:title" content="About · AWS Encyclopedia">
+<meta property="og:description" content="Where the numbers come from.">
+<meta property="og:image" content="https://awsencyclopedia.shadw.app/og.png">
+<meta property="og:site_name" content="AWS Encyclopedia">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark" aria-hidden="true"></span><span>AWS <b>Encyclopedia</b></span></a>
+  <nav class="nav-wide" aria-label="Site"><ul><li><a href="services.html">All 436 services</a></li><li><a href="why.html">Why it&#x27;s complicated</a></li><li><a href="start.html">The 13 basics</a></li><li><a href="shadw.html">Use Shadw</a></li></ul></nav>
+  <details class="nav-menu"><summary>Menu</summary><nav aria-label="Site menu"><ul><li><a href="services.html">All 436 services</a></li><li><a href="why.html">Why it&#x27;s complicated</a></li><li><a href="start.html">The 13 basics</a></li><li><a href="shadw.html">Use Shadw</a></li></ul></nav></details>
+</header>
+<main id="main">
+<div class="wrap">
+<header class="pg-head"><p class="kicker">About</p><h1>About this guide</h1><p class="lede">A plain field guide to AWS, rebuilt in 2026.</p></header>
+<section class="sec"><h2>Where the numbers come from</h2><p>Every count on the site is read from the AWS SDK for Python (botocore 1.44.1, read 2026-11-12): one model per service API, the operations in each model, and the regions in its endpoint data. <code>_src/fetch_aws.py</code> refreshes them; <code>_src/build.py</code> writes the pages and fails if a service it names is missing.</p></section>
+<section class="sec"><h2>Not affiliated</h2><p>AWS and the service names are trademarks of Amazon.com, Inc. or its affiliates. This guide is independent.</p></section>
+<section class="sec"><h2>Earlier version</h2><p>Version 1 had thirteen hand-written pages; their addresses still work, and the misspelt <code>lamda.html</code> now goes to <a href="lambda.html">lambda.html</a>.</p></section></div>
+</main>
+<footer class="foot">
+  <p><strong>AWS Encyclopedia.</strong> Counts from the AWS SDK for Python (botocore 1.44.1, read 2026-11-12). Not affiliated with Amazon Web Services. <a href="about.html">About</a> · <a href="https://github.com/SolutionsAsService/AWSEncyclopedia">Source</a> · MIT licence.</p>
+</footer>
+</body>
+</html>
