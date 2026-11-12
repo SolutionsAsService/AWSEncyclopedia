@@ -44,7 +44,7 @@ def level(ops):
     return sum(ops >= c for c in CUTS)
 
 
-NAV = [("services.html", f"All {N} services"), ("why.html", "Why it's complicated"), ("start.html", "The 13 basics"), ("shadw.html", "Use Shadw")]
+NAV = [("services.html", f"All {N} APIs"), ("why.html", "Why it's complicated"), ("start.html", "The 13 basics"), ("shadw.html", "Use Shadw")]
 
 
 def page(path, title, body, desc, active=None, js=False):
@@ -86,8 +86,16 @@ def page(path, title, body, desc, active=None, js=False):
 
 
 def wall(compact=False):
-    cells = "".join(f'<i class="w{level(s["ops"])}{" b" if s["id"] in BEGIN else ""}" title="{e(name(s["id"]))}"></i>' for s in SV)
-    return f'<div class="wall{" compact" if compact else ""}" aria-hidden="true">{cells}</div>'
+    files = {x["id"]: x for x in K.SERVICES}
+    def cell(s):
+        cls = f'w{level(s["ops"])}'
+        if s["id"] in files:
+            x = files[s["id"]]
+            return f'<a class="{cls} b" href="{x["file"]}" data-name="{e(x["short"])}: {s["ops"]} operations, one of the {len(K.SERVICES)} basics" aria-label="{e(x["short"])}, one of the {len(K.SERVICES)} basics"></a>'
+        return f'<i class="{cls}" data-name="{e(name(s["id"]))}: {s["ops"]} operations" aria-hidden="true"></i>'
+    cells = "".join(cell(s) for s in sorted(SV, key=lambda s: (-s["ops"], s["id"])))
+    cells += '<a class="sh" href="shadw.html" data-name="Shadw: one fluid.json file" aria-label="Shadw: one file, fluid.json"></a>'
+    return f'<div class="wall{" compact" if compact else ""}" role="group" aria-label="{N} AWS service APIs, largest first">{cells}</div><p class="wall-name" data-role="wname" aria-live="polite">Hover or tap a square to name it.</p>'
 
 
 def header(kicker, title, lede):
@@ -96,25 +104,28 @@ def header(kicker, title, lede):
 
 # ------------------------------------------------------------------ home
 def build_home():
+    bounds = [1] + CUTS + [MAXOPS + 1]
+    legend = "".join(f'<span class="lg"><i class="w{k}"></i>{bounds[k]}–{bounds[k + 1] - 1}</span>' for k in range(4))
     top = sorted(SV, key=lambda s: -s["ops"])[0]
     groups = len(K.GROUPS[0][1])
     cards = "".join(f'<li><a href="{x["file"]}"><span class="c-k">{e(x["kind"])}</span><span class="c-t">{e(x["short"])}</span><span class="c-n">{BY[x["id"]]["ops"]} operations</span></a></li>' for x in K.SERVICES)
     body = f"""<section class="hero" aria-labelledby="h1">
   <div class="hero-text">
     <p class="kicker">A field guide to Amazon Web Services</p>
-    <h1 id="h1"><span class="big">{N}</span> services.<br>Your website needs <em>one file</em>.</h1>
-    <p class="lede">Every square is one AWS service, counted from Amazon's own SDK: {OPS:,} API operations in all. This guide explains the {len(K.SERVICES)} you meet first and why the rest exist. Then it tells you the shortcut.</p>
-    <div class="ctas"><a class="btn" href="services.html">See all {N}</a><a class="btn ghost" href="shadw.html">Or use Shadw →</a></div>
+    <h1 id="h1"><span class="big">{N}</span> AWS APIs.<br>Your website needs <em>one file</em>.</h1>
+    <p class="lede">Every square is one AWS service API, counted from Amazon's own SDK: {OPS:,} operations in all. <span class="wide-only">This guide explains the {len(K.SERVICES)} you meet first and why the rest exist. </span>Then the shortcut: Shadw, a host that serves a repository from one <code>fluid.json</code> file.</p>
+    <div class="ctas"><a class="btn" href="start.html">Start with the {len(K.SERVICES)} basics</a><a class="btn ghost" href="services.html">See all {N}</a></div>
+    <p class="or"><a href="shadw.html">Or skip it: use Shadw →</a></p>
   </div>
   <figure class="hero-fig">
     {wall()}
-    <figcaption><span class="lg"><i class="w0"></i><i class="w1"></i><i class="w2"></i><i class="w3"></i> one square per service, darker = more API operations (quartiles)</span><span class="lg"><i class="w2 b"></i> the {len(K.SERVICES)} basics</span><a class="one" href="shadw.html"><i></i><span><b>fluid.json</b> one file on Shadw →</span></a></figcaption>
+    <figcaption><span class="lg-t">One square per service API, largest first; stronger shade = more operations:</span>{legend}<span class="lg"><i class="w3 b"></i> the {len(K.SERVICES)} basics (tap one)</span><a class="one" href="shadw.html"><i></i><span><b>fluid.json</b> one file on Shadw →</span></a></figcaption>
   </figure>
 </section>
 <section class="band" aria-labelledby="why-h">
   <h2 id="why-h">Why it feels like this</h2>
   <ul class="facts">
-    <li><b>{N}</b><span>services in the SDK, each its own API</span></li>
+    <li><b>{N}</b><span>service APIs in the SDK</span></li>
     <li><b>{OPS:,}</b><span>API operations across them; {name(top["id"])} alone has {top["ops"]}</span></li>
     <li><b>{groups}</b><span>different services that can run your code</span></li>
     <li><b>{REGIONS}</b><span>regions in {len(PARTS)} separate partitions</span></li>
@@ -127,37 +138,41 @@ def build_home():
 </section>
 <section class="band shadw-band" aria-labelledby="sh-h">
   <h2 id="sh-h">Or skip all of it</h2>
-  <p class="lede">To put a website online on AWS you would wire S3, CloudFront, Route 53, a certificate and IAM together. On Shadw this whole site deploys from one small file:</p>
+  <p class="lede">To put a static site on your own domain by hand on AWS, you wire up to five services together (or use Amplify Hosting, which bundles them). On Shadw this whole site deploys with one small config file next to its pages:</p>
   <pre class="code"><code>{e((ROOT / "fluid.json").read_text().strip())}</code></pre>
   <p><a class="btn" href="shadw.html">How Shadw does it →</a></p>
 </section>"""
-    page("index.html", None, body, f"AWS has {N} services and {OPS:,} API operations, counted from its own SDK. A field guide to the ones you meet first, and why a website needs only one file on Shadw.")
+    page("index.html", None, body, js=True, desc=f"AWS has {N} service APIs and {OPS:,} operations, counted from its own SDK. A field guide to the ones you meet first, and why a website needs only one file on Shadw.")
 
 
 # ------------------------------------------------------------------ all services
 def build_services():
     rows = []
-    for s in SV:
-        w = max(0.6, 100 * s["ops"] / MAXOPS)
-        rows.append(f'<li data-n="{e((s["full"] or "").lower())} {s["id"]}" data-ops="{s["ops"]}"><span class="s-name">{e(name(s["id"]))}</span>'
-                    f'<code class="s-id">{s["id"]}</code><span class="s-ops"><span class="bar" style="width:{w:.1f}%"></span><span class="num">{s["ops"]}</span></span></li>')
+    files = {x["id"]: x for x in K.SERVICES}
+    def sortname(s):
+        return re.sub(r"^(amazon|aws)\s+", "", name(s["id"]).lower())
+    for s in sorted(SV, key=sortname):
+        v = s["ops"] / MAXOPS
+        nm = f'<a href="{files[s["id"]]["file"]}">{e(name(s["id"]))}</a> <span class="tag">basic</span>' if s["id"] in files else e(name(s["id"]))
+        rows.append(f'<li data-n="{e((s["full"] or "").lower())} {s["id"]}" data-s="{e(sortname(s))}" data-ops="{s["ops"]}"><span class="s-name">{nm}</span>'
+                    f'<code class="s-id">{s["id"]}</code><span class="s-ops"><span class="bar" style="--v:{v:.4f}"></span><span class="num">{s["ops"]}</span></span></li>')
     body = f"""<div class="wrap">
-{header(f"All {N}, from the SDK", f"Every AWS service", f"The AWS SDK for Python ships one model per service API: {N} of them, with {OPS:,} operations between them. The bar is each service's number of API operations.")}
+{header(f"All {N}, from the SDK", f"Every AWS service API", f"The AWS SDK for Python ships one model per service API: {N} of them, with {OPS:,} operations between them. The bar is each service's number of API operations.")}
 <div class="tools" role="search">
-  <label>Find a service <input type="search" data-role="q" placeholder="queue, database, S3…" autocomplete="off"></label>
-  <div class="sort" role="group" aria-label="Sort"><button type="button" data-sort="az" aria-pressed="true">A–Z</button><button type="button" data-sort="ops" aria-pressed="false">Largest first</button></div>
+  <label>Find a service <input type="search" data-role="q" placeholder="name or SDK id, e.g. S3, lambda" autocomplete="off"></label>
+  <div class="sort" role="group" aria-label="Sort"><button type="button" data-sort="az" aria-pressed="true">A–Z by name</button><button type="button" data-sort="ops" aria-pressed="false">Largest first</button></div>
 </div>
 <p class="count" data-role="count" role="status">{N} services</p>
 <ol class="svc" data-role="list">{"".join(rows)}</ol>
-<p class="note">Names are the SDK's own <code>serviceFullName</code>. Some services have more than one API (for example <code>ses</code> and <code>sesv2</code>), so this counts APIs, not products.</p>
+<p class="note">Bar length is to scale; the longest is Amazon EC2, {MAXOPS} operations. Names are the SDK's own <code>serviceFullName</code>. Some services have more than one API (for example <code>ses</code> and <code>sesv2</code>), so this counts APIs, not products.</p>
 </div>"""
-    page("services.html", "Every AWS service", body, f"All {N} AWS service APIs from the AWS SDK, searchable, with their operation counts.", active="services.html", js=True)
+    page("services.html", "Every AWS service API", body, f"All {N} AWS service APIs from the AWS SDK, searchable, with their operation counts.", active="services.html", js=True)
 
 
 # ------------------------------------------------------------------ why
 def build_why():
     top = sorted(SV, key=lambda s: -s["ops"])[:12]
-    bars = "".join(f'<li><span class="b-l">{e(name(s["id"]))}</span><span class="b-v"><span class="bar" style="width:{100 * s["ops"] / MAXOPS:.1f}%"></span><span class="num">{s["ops"]}</span></span></li>' for s in top)
+    bars = "".join(f'<li><span class="b-l">{e(name(s["id"]))}</span><span class="b-v"><span class="bar" style="--v:{s["ops"] / MAXOPS:.4f}"></span><span class="num">{s["ops"]}</span></span></li>' for s in top)
     groups = ""
     for label, ids in K.GROUPS:
         chips = "".join(f'<li><span>{e(name(i))}</span> <code>{i}</code></li>' for i in ids)
@@ -168,17 +183,17 @@ def build_why():
     body = f"""<div class="wrap">
 {header("The honest answer", "Why AWS is this complicated", "Four reasons, each counted from the AWS SDK, and one reason it is not a mistake.")}
 <section class="sec"><h2><span class="num">01</span>There is a service for everything</h2>
-<p>{N} services, {OPS:,} operations. The twelve largest APIs alone have {sum(s["ops"] for s in top):,} operations between them:</p>
+<p>{N} service APIs, {OPS:,} operations. The twelve largest alone have {sum(s["ops"] for s in top):,} operations between them:</p>
 <ol class="bars">{bars}</ol></section>
 <section class="sec"><h2><span class="num">02</span>Many ways to do one thing</h2>
-<p>For each everyday job there are several services, each with its own pricing, limits and API. Every name below is in the SDK today.</p>
+<p>For each everyday job there are several services to choose from, each with its own pricing, limits and API. Every name below is in the SDK today.</p>
 {groups}</section>
 <section class="sec"><h2><span class="num">03</span>Where your things live</h2>
-<p>Resources live in a region, and regions are grouped into partitions that do not share accounts: {REGIONS} regions in {len(PARTS)} partitions.</p>
+<p>Most resources live in a region (a few services, such as IAM, Route 53 and CloudFront, are global), and regions are grouped into partitions that do not share accounts: {REGIONS} regions in {len(PARTS)} partitions.</p>
 <ul class="parts">{parts}</ul>
 <p class="regions">{std}</p></section>
 <section class="sec"><h2><span class="num">04</span>Permission for every action</h2>
-<p>Nothing works until IAM allows it. Each service defines its own actions, and a policy has to name the right ones on the right resources. IAM's own API has {iam} operations, more than {sum(1 for s in SV if s["ops"] < iam)} of the {N} services.</p></section>
+<p>Nothing works until IAM allows it. Each service defines its own actions, and a policy has to name the right ones on the right resources. IAM's own API has {iam} operations, more than {sum(1 for s in SV if s["ops"] < iam)} of the {N} APIs.</p></section>
 <section class="sec"><h2><span class="num">05</span>Not a mistake</h2>
 <p>{e(K.WHY_FAIR)}</p>
 <p><a class="btn" href="shadw.html">The shortcut for websites →</a></p></section>
@@ -190,7 +205,7 @@ def build_why():
 def build_start():
     cards = "".join(f'<li><a href="{x["file"]}"><span class="c-k">{e(x["kind"])}</span><span class="c-t">{e(x["short"])}</span><span class="c-l">{e(x["what"])}</span><span class="c-n">{BY[x["id"]]["ops"]} operations · #{RANK[x["id"]]} of {N}</span></a></li>' for x in K.SERVICES)
     body = f"""<div class="wrap">
-{header("Start here", f"The {len(K.SERVICES)} basics", f"Out of {N}, these are the services almost every AWS account touches. Each page says what it is, what it is for, the catch, and whether a website needs it.")}
+{header("Start here", f"The {len(K.SERVICES)} basics", f"Out of {N}, these are the ones a beginner meets first. Each page says what it is, what it is for, the catch, and whether a website needs it.")}
 <ol class="cards cards-wide">{cards}</ol></div>"""
     page("start.html", f"The {len(K.SERVICES)} basics", body, f"The {len(K.SERVICES)} AWS services you meet first, in plain words.", active="start.html")
 
@@ -220,14 +235,15 @@ def build_shadw():
     aws_web = ["s3", "cloudfront", "route53", "acm", "iam"]
     aws_list = "".join(f'<li>{e(name(i))} <code>{i}</code> <span>{BY[i]["ops"]} ops</span></li>' for i in aws_web)
     body = f"""<div class="wrap">
-{header("The shortcut", "Just use Shadw", f"If what you want is a website online, you do not need {N} services. You need a folder of pages and one file.")}
+{header("The shortcut", "Just use Shadw", "If what you want is a website online, you do not need to wire five AWS services together. You need a folder of pages and one config file.")}
 <div class="vs">
-  <div class="vs-a"><h2>A static site on AWS</h2><ul class="vs-list">{aws_list}</ul><p class="vs-n">{len(aws_web)} services · {sum(BY[i]["ops"] for i in aws_web)} API operations to learn your way around</p></div>
-  <div class="vs-b"><h2>The same site on Shadw</h2><pre class="code"><code>{e(fj)}</code></pre><p class="vs-n">1 file · this site's own <code>fluid.json</code>, as deployed</p></div>
+  <div class="vs-a"><h2>A static site on your own domain, by hand on AWS</h2><ul class="vs-list">{aws_list}</ul><p class="vs-n">up to {len(aws_web)} services · {sum(BY[i]["ops"] for i in aws_web)} API operations between them</p><p class="vs-note">Amplify Hosting (<code>amplify</code>) bundles most of this into one AWS service, and is the fairer comparison.</p></div>
+  <div class="vs-b"><h2>The same pages on Shadw</h2><pre class="code"><code>{e(fj)}</code></pre><p class="vs-n">1 config file, next to your pages · this site's own <code>fluid.json</code>, as committed</p></div>
 </div>
 <ul class="shfacts">{facts}</ul>
+<section class="sec"><h2>Three steps</h2><ol class="steps3"><li>Put your built pages in a folder, such as <code>site/</code>.</li><li>Add a <code>fluid.json</code> naming the project and that folder, like the one above.</li><li>Push the repository; by Shadw's rule it is served at <code>&lt;name&gt;.shadw.app</code>.</li></ol></section>
 <section class="sec"><h2>When you do need AWS</h2><p>Databases at scale, machine learning, video pipelines, strict compliance, or anything that needs its own servers: that is what the other services are for. For pages, a blog, a portfolio or a docs site, start simple.</p></section>
-<p class="go"><a class="btn big" href="{K.SHADW_URL}">Go to Shadw →</a></p>
+<p class="go"><a class="btn big" href="{K.SHADW_URL}">Go to shadw.app →</a></p>
 </div>"""
     page("shadw.html", "Just use Shadw", body, "Why a website does not need AWS's services: the same site deploys on Shadw from one fluid.json file.", active="shadw.html")
 
