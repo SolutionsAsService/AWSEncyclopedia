@@ -81,3 +81,34 @@ Step 2g re-measure after R1: 21 pages at four sizes, light and dark: no overflow
 | Krug: "basics last in search results; '1 operations'" | ADAPT: basics first among matches; singular |
 
 Step 2g re-measure after R2: 21 pages, four sizes, light and dark: no overflow, small text or small target; hero bottom 627 at 1280x800 and 770 at 375x812.
+
+### Panel, WHOLE, round R3 (final pass; verdicts in panel/R3/)
+| Critic | Anchor used | Observed in the work | Verdict PASS/OBJECT | Requested change |
+|---|---|---|---|---|
+| Critic: Provocateur (Debord) | The Society of the Spectacle (Guy Debord): the number shown in place of the thing; the comparison staged so that only one outcome can be seen | All three R2 items are fixed on the live site. (1) "One config file" now appears everywhere: the hero, the intro, the wall's aria-label and link, both meta descriptions and all 13 service pages; no "one file" is left. shadw.html now says the repo's vercel.json is there "only so the same pages deploy on Vercel", which fits its `"fluid": true` key (Vercel's Fluid compute setting). (2) "Your own domain is extra" is gone. (3) Step 3 now reads "Deploy the repository to Shadw (for example with shadw-MCP's deploy tool); by Shadw's rule it is served at `<name>.shadw.app`." Every Shadw claim now matches EVIDENCE.md, and every AWS comparison is labelled honestly, with Amplify Hosting named as the fairer one. The R1 fixes still hold. | PASS | None. |
+| Critic: Usability (Krug) | Don't Make Me Think (Steve Krug): five-second test, obvious starting point, clickables that do what they look like | **Touch, 375x812:** tapping squares 1, 5, 40, 150, 300 and 430 names the square tapped (SageMaker, AWS IoT, Chime SDK Voice, Lex, Cognito Sync, IAM Toolbox) and the page stays put, so no tap lands on the wrong page any more. Tapping a basic or the Shadw cell turns the name line into a 44 px "Open S3 →" / "How Shadw works →" link, which opens the right page.<br>**Mouse and keyboard, 1280x800:** hover names grey and basic squares correctly, a click on a basic opens it directly, keyboard focus and Tab name each basic in turn, and Enter opens the focused basic.<br>**Search and labels:** searching "s3" lists the S3 basic first, and no square reads "1 operations".<br>**Carried over:** the R1 fixes are intact (start button, Shadw defined, A–Z by name, linked basics, lowercase pages, Shadw three steps). | PASS | None blocking. Polish only: give `.wall-name` a two-line `min-height`, because when the "Open … →" line appears the caption and Shadw chip below jump 19.5 px at 375. Optionally let a second tap on the same basic open it. |
+| Critic: Evidence (Tufte) | The Visual Display of Quantitative Information (Edward Tufte): lie factor, graphical integrity, the legend must decode the graphic | Checked live at 1280 and 375, light and dark. **Bars:** why.html bars are to scale; across the 12 bars, px per operation varies by at most 1.0005× in all four views. services.html bars are to scale at 1280 (1.006×). **Wall:** 437 cells, sorted largest first, ending in the blue Shadw cell. Cells are 18 px at 1280 and 10 px at 375. All 13 basics now draw the double inset outline over their quartile shade in every view; at 10 px a 4 px patch of shade still shows. **Legend:** reads 1–13, 14–28, 29–59 and 60–811 ops, the 13 basics, and the Shadw key ("Shadw: one config file" on phones). It matches the aws.json cuts and holds in dark mode. | PASS | Not blocking: at 375 the services.html bars are 3.5rem long at most, so every service under 29 ops (about half the list) draws at the 2px minimum. The number beside each bar carries the value, so this flattens the small end but does not distort it. If wanted, widen the phone track: `site/css/site.css`, `.s-ops .bar{width:calc(var(--v)*5rem)}` at the 860px breakpoint, with `.svc li` at `minmax(0,1fr) 8.5rem`. |
+
+#### Resolutions, round R3
+| Finding | Resolution |
+|---|---|
+| Tufte: "phone bars under 29 ops all draw at the floor" | ADAPT: a 5rem phone track |
+| Krug: "the name line jumps when the Open link appears" | ADAPT: a fixed two-line height on phones |
+| Krug: "a second tap could open the page" | DEFERRED: the Open link is the one target, by design |
+
+## Stop test
+- **S1** met: every finding is ADAPT, or DEFERRED with a reason (capitalised redirect stubs, which would collide on case-insensitive filesystems; a second-tap shortcut).
+- **S2** met for the convened seats: Debord, Krug and Tufte all PASS in R3 after re-checking their own objections live. The other picked seats (Shklovsky, Holmes, Mace, Cairo, Papanek) and the Greenberg override did not sit: **not fully met** against the full panel.
+- **S3** met in R3: only optional polish.
+- **S4**: the wall (M2) carried the argument from R1 to R3; the push went to honesty and legibility.
+- **S5**: Bierut's counterpoint applied: the site explains before it sells, and says when AWS is the right answer.
+
+## Compliance Check
+- [x] Traversal plan with exact seed labels, Frontier, moves M1–M3
+- [x] Panels R1–R3, one agent per reference, three at a time, verdicts filed in `panel/`
+- [x] Resolutions after every round, Step 2g re-measure after every round
+- [x] First screen at 1280x800 and 375x812 holds the whole landing graphic
+- [x] Mobile floor: 44 px targets, 12 px minimum text, no overflow down to 320 px
+- [x] Website rule: vercel.json, site/vercel.json, fluid.json (pattern/target routes, checked by the build), root redirect, .vercelignore, absolute og:image on awsencyclopedia.shadw.app
+- [x] No grade in this repository
+- [ ] S2 against the full picked panel (five seats and the override not convened)
