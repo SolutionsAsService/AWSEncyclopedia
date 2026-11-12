@@ -87,7 +87,7 @@ WHY_FAIR = ("This complexity is not a mistake. AWS serves banks, streaming servi
 
 SHADW_FACTS = [
     ("One config file", "A Shadw project is a repository with a <code>fluid.json</code> that names the project and the folder of pages to serve. This site's is printed above, as committed."),
-    ("A predictable address", "Each project is served at <code>&lt;name&gt;.shadw.app</code>; by that rule this one is <code>awsencyclopedia.shadw.app</code>. Your own domain is extra."),
+    ("A predictable address", "Each project is served at <code>&lt;name&gt;.shadw.app</code>; by that rule this one is <code>awsencyclopedia.shadw.app</code>."),
     ("Built where it lives", "Shadw runs builds as host processes in your checkout. This site ships its pages already built, in <code>site/</code>."),
     ("Deploy, check, roll back", "The <a href=\"https://github.com/SolutionsAsService/shadw-MCP\">shadw-MCP</a> server gives an AI agent fifteen tools to deploy a project, check its health and roll it back."),
 ]

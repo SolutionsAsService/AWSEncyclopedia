@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Just use Shadw · AWS Encyclopedia</title>
-<meta name="description" content="Why a website does not need AWS&#x27;s services: the same site deploys on Shadw from one fluid.json file.">
+<meta name="description" content="Why a website does not need AWS&#x27;s services: the same site deploys on Shadw with one fluid.json config file.">
 <meta property="og:title" content="Just use Shadw · AWS Encyclopedia">
-<meta property="og:description" content="Why a website does not need AWS&#x27;s services: the same site deploys on Shadw from one fluid.json file.">
+<meta property="og:description" content="Why a website does not need AWS&#x27;s services: the same site deploys on Shadw with one fluid.json config file.">
 <meta property="og:image" content="https://awsencyclopedia.shadw.app/og.png">
 <meta property="og:site_name" content="AWS Encyclopedia">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -30,10 +30,10 @@
   &quot;project&quot;: &quot;awsencyclopedia&quot;,
   &quot;static_dir&quot;: &quot;site&quot;,
   &quot;routes&quot;: [{ &quot;pattern&quot;: &quot;/&quot;, &quot;target&quot;: &quot;static&quot; }]
-}</code></pre><p class="vs-n">1 config file, next to your pages · this site's own <code>fluid.json</code>, as committed</p></div>
+}</code></pre><p class="vs-n">1 config file, next to your pages · this site's own <code>fluid.json</code>, as committed</p><p class="vs-note">The repository also carries a <code>vercel.json</code>, only so the same pages deploy on Vercel.</p></div>
 </div>
-<ul class="shfacts"><li><h3>One config file</h3><p>A Shadw project is a repository with a <code>fluid.json</code> that names the project and the folder of pages to serve. This site's is printed above, as committed.</p></li><li><h3>A predictable address</h3><p>Each project is served at <code>&lt;name&gt;.shadw.app</code>; by that rule this one is <code>awsencyclopedia.shadw.app</code>. Your own domain is extra.</p></li><li><h3>Built where it lives</h3><p>Shadw runs builds as host processes in your checkout. This site ships its pages already built, in <code>site/</code>.</p></li><li><h3>Deploy, check, roll back</h3><p>The <a href="https://github.com/SolutionsAsService/shadw-MCP">shadw-MCP</a> server gives an AI agent fifteen tools to deploy a project, check its health and roll it back.</p></li></ul>
-<section class="sec"><h2>Three steps</h2><ol class="steps3"><li>Put your built pages in a folder, such as <code>site/</code>.</li><li>Add a <code>fluid.json</code> naming the project and that folder, like the one above.</li><li>Push the repository; by Shadw's rule it is served at <code>&lt;name&gt;.shadw.app</code>.</li></ol></section>
+<ul class="shfacts"><li><h3>One config file</h3><p>A Shadw project is a repository with a <code>fluid.json</code> that names the project and the folder of pages to serve. This site's is printed above, as committed.</p></li><li><h3>A predictable address</h3><p>Each project is served at <code>&lt;name&gt;.shadw.app</code>; by that rule this one is <code>awsencyclopedia.shadw.app</code>.</p></li><li><h3>Built where it lives</h3><p>Shadw runs builds as host processes in your checkout. This site ships its pages already built, in <code>site/</code>.</p></li><li><h3>Deploy, check, roll back</h3><p>The <a href="https://github.com/SolutionsAsService/shadw-MCP">shadw-MCP</a> server gives an AI agent fifteen tools to deploy a project, check its health and roll it back.</p></li></ul>
+<section class="sec"><h2>Three steps</h2><ol class="steps3"><li>Put your built pages in a folder, such as <code>site/</code>.</li><li>Add a <code>fluid.json</code> naming the project and that folder, like the one above.</li><li>Deploy the repository to Shadw (for example with shadw-MCP's deploy tool); by Shadw's rule it is served at <code>&lt;name&gt;.shadw.app</code>.</li></ol></section>
 <section class="sec"><h2>When you do need AWS</h2><p>Databases at scale, machine learning, video pipelines, strict compliance, or anything that needs its own servers: that is what the other services are for. For pages, a blog, a portfolio or a docs site, start simple.</p></section>
 <p class="go"><a class="btn big" href="https://shadw.app">Go to shadw.app →</a></p>
 </div>

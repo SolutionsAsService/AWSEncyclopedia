@@ -91,10 +91,10 @@ def wall(compact=False):
         cls = f'w{level(s["ops"])}'
         if s["id"] in files:
             x = files[s["id"]]
-            return f'<a class="{cls} b" href="{x["file"]}" data-name="{e(x["short"])}: {s["ops"]} operations, one of the {len(K.SERVICES)} basics" aria-label="{e(x["short"])}, one of the {len(K.SERVICES)} basics"></a>'
-        return f'<i class="{cls}" data-name="{e(name(s["id"]))}: {s["ops"]} operations" aria-hidden="true"></i>'
+            return f'<a class="{cls} b" href="{x["file"]}" data-name="{e(x["short"])}: {s["ops"]} operations, one of the {len(K.SERVICES)} basics" data-open="Open {e(x["short"])} →" aria-label="{e(x["short"])}, one of the {len(K.SERVICES)} basics"></a>'
+        return f'<i class="{cls}" data-name="{e(name(s["id"]))}: {s["ops"]} operation{"" if s["ops"] == 1 else "s"}" aria-hidden="true"></i>'
     cells = "".join(cell(s) for s in sorted(SV, key=lambda s: (-s["ops"], s["id"])))
-    cells += '<a class="sh" href="shadw.html" data-name="Shadw: one fluid.json file" aria-label="Shadw: one file, fluid.json"></a>'
+    cells += '<a class="sh" href="shadw.html" data-name="Shadw: one fluid.json config file" data-open="How Shadw works →" aria-label="Shadw: one config file, fluid.json"></a>'
     return f'<div class="wall{" compact" if compact else ""}" role="group" aria-label="{N} AWS service APIs, largest first">{cells}</div><p class="wall-name" data-role="wname" aria-live="polite">Hover or tap a square to name it.</p>'
 
 
@@ -105,21 +105,21 @@ def header(kicker, title, lede):
 # ------------------------------------------------------------------ home
 def build_home():
     bounds = [1] + CUTS + [MAXOPS + 1]
-    legend = "".join(f'<span class="lg"><i class="w{k}"></i>{bounds[k]}–{bounds[k + 1] - 1}</span>' for k in range(4))
+    legend = "".join(f'<span class="lg"><i class="w{k}"></i>{bounds[k]}–{bounds[k + 1] - 1} ops</span>' for k in range(4))
     top = sorted(SV, key=lambda s: -s["ops"])[0]
     groups = len(K.GROUPS[0][1])
     cards = "".join(f'<li><a href="{x["file"]}"><span class="c-k">{e(x["kind"])}</span><span class="c-t">{e(x["short"])}</span><span class="c-n">{BY[x["id"]]["ops"]} operations</span></a></li>' for x in K.SERVICES)
     body = f"""<section class="hero" aria-labelledby="h1">
   <div class="hero-text">
     <p class="kicker">A field guide to Amazon Web Services</p>
-    <h1 id="h1"><span class="big">{N}</span> AWS APIs.<br>Your website needs <em>one file</em>.</h1>
-    <p class="lede">Every square is one AWS service API, counted from Amazon's own SDK: {OPS:,} operations in all. <span class="wide-only">This guide explains the {len(K.SERVICES)} you meet first and why the rest exist. </span>Then the shortcut: Shadw, a host that serves a repository from one <code>fluid.json</code> file.</p>
+    <h1 id="h1"><span class="big">{N}</span> AWS APIs.<br>Your website needs <em>one config file</em>.</h1>
+    <p class="lede">Every square is one AWS service API, counted from Amazon's own SDK: {OPS:,} operations in all. <span class="wide-only">This guide explains the {len(K.SERVICES)} you meet first and why the rest exist. </span>Then the shortcut: Shadw, a host that serves a repository from one <code>fluid.json</code> config file.</p>
     <div class="ctas"><a class="btn" href="start.html">Start with the {len(K.SERVICES)} basics</a><a class="btn ghost" href="services.html">See all {N}</a></div>
     <p class="or"><a href="shadw.html">Or skip it: use Shadw →</a></p>
   </div>
   <figure class="hero-fig">
     {wall()}
-    <figcaption><span class="lg-t">One square per service API, largest first; stronger shade = more operations:</span>{legend}<span class="lg"><i class="w3 b"></i> the {len(K.SERVICES)} basics (tap one)</span><a class="one" href="shadw.html"><i></i><span><b>fluid.json</b> one file on Shadw →</span></a></figcaption>
+    <figcaption><span class="lg-t">One square per service API, largest first; stronger shade = more operations:</span>{legend}<span class="lg"><i class="w3 b"></i> the {len(K.SERVICES)} basics (tap one)</span><span class="lg narrow-only"><i class="shk"></i> Shadw: one config file</span><a class="one" href="shadw.html"><i></i><span><b>fluid.json</b> one config file on Shadw →</span></a></figcaption>
   </figure>
 </section>
 <section class="band" aria-labelledby="why-h">
@@ -142,7 +142,7 @@ def build_home():
   <pre class="code"><code>{e((ROOT / "fluid.json").read_text().strip())}</code></pre>
   <p><a class="btn" href="shadw.html">How Shadw does it →</a></p>
 </section>"""
-    page("index.html", None, body, js=True, desc=f"AWS has {N} service APIs and {OPS:,} operations, counted from its own SDK. A field guide to the ones you meet first, and why a website needs only one file on Shadw.")
+    page("index.html", None, body, js=True, desc=f"AWS has {N} service APIs and {OPS:,} operations, counted from its own SDK. A field guide to the ones you meet first, and why a website needs only one config file on Shadw.")
 
 
 # ------------------------------------------------------------------ all services
@@ -154,7 +154,7 @@ def build_services():
     for s in sorted(SV, key=sortname):
         v = s["ops"] / MAXOPS
         nm = f'<a href="{files[s["id"]]["file"]}">{e(name(s["id"]))}</a> <span class="tag">basic</span>' if s["id"] in files else e(name(s["id"]))
-        rows.append(f'<li data-n="{e((s["full"] or "").lower())} {s["id"]}" data-s="{e(sortname(s))}" data-ops="{s["ops"]}"><span class="s-name">{nm}</span>'
+        rows.append(f'<li{" data-basic" if s["id"] in files else ""} data-n="{e((s["full"] or "").lower())} {s["id"]}" data-s="{e(sortname(s))}" data-ops="{s["ops"]}"><span class="s-name">{nm}</span>'
                     f'<code class="s-id">{s["id"]}</code><span class="s-ops"><span class="bar" style="--v:{v:.4f}"></span><span class="num">{s["ops"]}</span></span></li>')
     body = f"""<div class="wrap">
 {header(f"All {N}, from the SDK", f"Every AWS service API", f"The AWS SDK for Python ships one model per service API: {N} of them, with {OPS:,} operations between them. The bar is each service's number of API operations.")}
@@ -223,7 +223,7 @@ def build_service(i, x):
 <section class="sec"><h2>What it is</h2><p>{e(x["what"])}</p></section>
 <section class="sec"><h2>What it is for</h2><p>{e(x["use"])}</p></section>
 <section class="sec"><h2>The catch</h2><p>{e(x["catch"])}</p></section>
-<aside class="web"><h2>For a website</h2><p>{e(x["web"])} <a href="shadw.html">A whole site on Shadw is one file →</a></p></aside>
+<aside class="web"><h2>For a website</h2><p>{e(x["web"])} <a href="shadw.html">A whole site on Shadw is one config file →</a></p></aside>
 {pager}</div>"""
     page(x["file"], x["short"], body, f'{x["short"]} ({s["full"]}): {x["what"]}', active="start.html")
 
@@ -238,14 +238,14 @@ def build_shadw():
 {header("The shortcut", "Just use Shadw", "If what you want is a website online, you do not need to wire five AWS services together. You need a folder of pages and one config file.")}
 <div class="vs">
   <div class="vs-a"><h2>A static site on your own domain, by hand on AWS</h2><ul class="vs-list">{aws_list}</ul><p class="vs-n">up to {len(aws_web)} services · {sum(BY[i]["ops"] for i in aws_web)} API operations between them</p><p class="vs-note">Amplify Hosting (<code>amplify</code>) bundles most of this into one AWS service, and is the fairer comparison.</p></div>
-  <div class="vs-b"><h2>The same pages on Shadw</h2><pre class="code"><code>{e(fj)}</code></pre><p class="vs-n">1 config file, next to your pages · this site's own <code>fluid.json</code>, as committed</p></div>
+  <div class="vs-b"><h2>The same pages on Shadw</h2><pre class="code"><code>{e(fj)}</code></pre><p class="vs-n">1 config file, next to your pages · this site's own <code>fluid.json</code>, as committed</p><p class="vs-note">The repository also carries a <code>vercel.json</code>, only so the same pages deploy on Vercel.</p></div>
 </div>
 <ul class="shfacts">{facts}</ul>
-<section class="sec"><h2>Three steps</h2><ol class="steps3"><li>Put your built pages in a folder, such as <code>site/</code>.</li><li>Add a <code>fluid.json</code> naming the project and that folder, like the one above.</li><li>Push the repository; by Shadw's rule it is served at <code>&lt;name&gt;.shadw.app</code>.</li></ol></section>
+<section class="sec"><h2>Three steps</h2><ol class="steps3"><li>Put your built pages in a folder, such as <code>site/</code>.</li><li>Add a <code>fluid.json</code> naming the project and that folder, like the one above.</li><li>Deploy the repository to Shadw (for example with shadw-MCP's deploy tool); by Shadw's rule it is served at <code>&lt;name&gt;.shadw.app</code>.</li></ol></section>
 <section class="sec"><h2>When you do need AWS</h2><p>Databases at scale, machine learning, video pipelines, strict compliance, or anything that needs its own servers: that is what the other services are for. For pages, a blog, a portfolio or a docs site, start simple.</p></section>
 <p class="go"><a class="btn big" href="{K.SHADW_URL}">Go to shadw.app →</a></p>
 </div>"""
-    page("shadw.html", "Just use Shadw", body, "Why a website does not need AWS's services: the same site deploys on Shadw from one fluid.json file.", active="shadw.html")
+    page("shadw.html", "Just use Shadw", body, "Why a website does not need AWS's services: the same site deploys on Shadw with one fluid.json config file.", active="shadw.html")
 
 
 def build_about():
